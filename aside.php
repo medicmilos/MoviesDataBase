@@ -93,4 +93,16 @@
 							</div>
 						</div>
 					</aside>
+					<aside id="recent-comments-2" class="widget widget_recent_comments">
+						<h4 class="widget-title">poll</h4>
+						
+									<div id='statistika'> 
+			<div id='statistika2'> 
+				<?php
+							include("poll.php");
+						?>
+			</div>
+			</div>
+						
+					</aside>
 				</aside>

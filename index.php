@@ -34,6 +34,17 @@
 					case "2": include("author.php"); break;  
 					case "3": include("movie.php"); break;  
 					case "4": include("genre.php"); break;  
+					case "5": include("admin.php"); break;  
+					case "6": include("manage_users.php"); break;  
+					case "7": include("manage_movies.php"); break;  
+					case "8": include("manage_comments.php"); break;  
+					case "9": include("manage_polls.php"); break;  
+					case "10": include("manage_user.php"); break;  
+					case "11": include("manage_comment.php"); break;  
+					case "12": include("movieadd.php"); break;  
+					case "13": include("manage_movie.php"); break;  
+					case "14": include("manage_polls.php"); break;  
+					case "15": include("manage_poll.php"); break;  
 					default: include("content.php");break;
 				}
 			 

@@ -140,8 +140,22 @@ $(document).ready(function(){
 	function() {
     $(this).find('ul').stop(true,true).fadeOut('fast');
 	});
-/*nesto novo*/
-	
+
+	/*---------------------------editovanje usera u admin panelu----------------------*/	 
+$('.editmail .email1').click(function(){
+	$(this).parent().html(" <textarea id='taEditEmail' name='taEditEmail' class='form-control'>"+$(this).text()+"</textarea>");
+	});	 
+$('.editpass .editpass1').click(function(){
+	$(this).parent().html("  <textarea id='taEditPass' name='taEditPass' class='form-control'>"+$(this).text()+"</textarea>");
+	});		
+$('.editdesc .editdesc1').click(function(){
+	$(this).parent().html(" <textarea id='taEditDesc' name='taEditDesc' class='form-control'>"+$(this).text()+"</textarea> ");
+	});		
+  /*nesto novo*/
+  
+  
+  
+  
 });
 
 /*CONTACT*/
@@ -247,3 +261,46 @@ function check2(){
 			document.getElementById("span-message").className += "glyphicon glyphicon-ok form-control-feedback";
 		}
 	} 
+////////////////////////////AJAX ANKETA//////////////
+var http;
+function ajaxprovera(){ 
+	if(window.XMLHttpRequest){
+		http=new XMLHttpRequest();
+	}else{
+		http=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	http.open("GET","poll.php",true);
+	http.send();
+	http.onreadystatechange = write_poll; 
+}
+function write_poll(){
+	if(http.readyState==4){
+		document.getElementById("statistika2").innerHTML=http.responseText;
+	}
+	
+}
+function poll_vote(){
+	if(window.XMLHttpRequest){
+		http=new XMLHttpRequest();
+	}else{
+		http=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	http.open("GET","poll.php?submit_poll=obj&answers="+getanswer(),true);
+	http.send();
+	http.onreadystatechange = write_poll; 
+	
+	
+}
+function getanswer(){
+	
+	var n= parseInt(document.getElementById("numbofradio").value);
+	var check=0;
+	
+	for(var i=1;i<n;i++){ 
+		if(document.getElementById(""+i).checked){
+			check = document.getElementById(""+i).value; 
+		}
+		
+	}
+	return check;
+}
