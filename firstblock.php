@@ -19,8 +19,7 @@
 								<img src='assets/images/".$poster."'>
 							</div>					
 							<div class='window-description'>
-								<a href='index.php?page=3&movie=".$idmovie."' class='title'>".$title." (".$year.")</a>
-								<a href='#' class='date'>".$time."</a>
+								<a href='index.php?page=3&movie=".$idmovie."' class='title'>".$title." (".$year.")</a> 
 								<div class='tag'>
 									<a href='index.php?page=4&genre=".$genre."' class='".$genre."'>".$genre."</a>
 								</div> 
@@ -47,8 +46,7 @@
 								<img src='assets/images/".$poster."'>
 							</div>					
 							<div class='window-description'>
-								<a href='index.php?page=3&movie=".$idmovie."' class='title'>".$title." (".$year.")</a>
-								<a href='#' class='date'>".$time."</a>
+								<a href='index.php?page=3&movie=".$idmovie."' class='title'>".$title." (".$year.")</a> 
 								<div class='tag'>
 									<a href='index.php?page=4&genre=".$genre."' class='".$genre."'>".$genre."</a>
 								</div> 

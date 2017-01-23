@@ -12,7 +12,7 @@
 						if(isset($_REQUEST['btnSaveUprofile'])){
 								@$title = ($_REQUEST['taEditEmail']);
 								@$year = ($_REQUEST['taEditPass']); 
-								@$description = ($_REQUEST['tbYear']); 
+								@$description = ($_REQUEST['taEditDesc']); 
 								
 								$upit = "UPDATE movies SET title = '".$title."', release_year = '".$year."', description = '".$description."'  WHERE id_movies = '".$_REQUEST['id']."'";
 									include("konekcija.php");
@@ -52,7 +52,7 @@
 										<input type='hidden' name='page' value='13' />
 										<tr><td><b>Title:</b></td><td><span class='editmail'><input type='hidden' name='taEditEmail' value='$title' /><span class='email1'>$title</span></span></td></tr>
 										<tr><td><b>Year:</b></td><td><span class='editpass'><input type='hidden' name='taEditPass' value='$year' /><span class='editpass1'>$year</span></span></td></tr> 
-										<tr><td><b>Description:</b></td><td><span class='editpass'><input type='hidden' name='tbYear' value='$description' /><span class='editpass1'>$description</span></span></td></tr> 
+										<tr><td><b>Description:</b></td><td><span class='editdesc'><input type='hidden' name='taEditDesc' value='$description' /><span class='editdesc1'>$description</span></span></td></tr> 
 										<tr><td class='save22' colspan='2'><b>  <input type='submit' class='save2' value='Update' name='btnSaveUprofile'>  </b></td></tr>
 									</table>
 								</div> 	

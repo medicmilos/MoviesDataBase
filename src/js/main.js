@@ -17,14 +17,14 @@ $(document).ready(function(){
       animating = false,
       animTime = 500,
       autoSlideTimeout,
-      autoSlideDelay = 6000,
+      autoSlideDelay = 3000,
       $pagination = $(".slider-pagi");
   
   function createBullets() {
     for (var i = 0; i < numOfSlides+1; i++) {
-      var $li = $("<li class='slider-pagi__elem'></li>");
+      var $li = $("<li class='sp-button'></li>");
       $li.addClass("slider-pagi__elem-"+i).data("page", i);
-      if (!i) $li.addClass("active");
+      if (!i) $li.addClass(" sp-selected-button");
       $pagination.append($li);
     }
   };
@@ -151,11 +151,10 @@ $('.editpass .editpass1').click(function(){
 $('.editdesc .editdesc1').click(function(){
 	$(this).parent().html(" <textarea id='taEditDesc' name='taEditDesc' class='form-control'>"+$(this).text()+"</textarea> ");
 	});		
-  /*nesto novo*/
+  /*hover main filmova*/ 
+
   
-  
-  
-  
+/*nesto novo*/
 });
 
 /*CONTACT*/
@@ -304,3 +303,134 @@ function getanswer(){
 	}
 	return check;
 }
+//provera registracije
+function check(){
+	
+	var username = document.getElementById("tbUsername2").value;
+	var email = document.getElementById("tbEmail2").value;
+	var gender = document.getElementsByName("rbGender");
+	var pass = document.getElementById("tbPassword2").value;
+	var repass = document.getElementById("tbPassword22").value;
+	
+	var userS = document.getElementById("userS");
+	var emailS = document.getElementById("emailS");
+	var genderS = document.getElementById("genderS");
+	var passS = document.getElementById("passS");
+	var passS2 = document.getElementById("passS2");
+	
+	var reg_user=/^[\w\s\/\.\_\d]{4,20}$/;
+	var reg_email=/^[\w\.]+[\d]*@[\w]+\.\w{2,3}(\.[\w]{2})?$/;
+	var reg_pass=/^[\w\s\/\.\_\d]{4,}$/;
+	
+	var greske=0; 
+	
+	if(!reg_user.test(username)){
+		userS.innerHTML="Username must be at least 4 characters";
+		userS.className ="greskeR2";
+		document.getElementById("tbUsername2").style.border = "1px solid #a94442";
+		greske++;
+	}else{
+		userS.innerHTML=""; 
+		document.getElementById("tbUsername2").style.border = "none";
+	}
+	if(!reg_email.test(email)){
+		emailS.innerHTML="Please enter valid email";
+		emailS.className ="greskeR2";
+		document.getElementById("tbEmail2").style.border = "1px solid #a94442";
+		greske++;
+	}else{
+		emailS.innerHTML="";
+		document.getElementById("tbEmail2").style.border = "none";
+	}
+	
+	var choosen=""; 
+	for(var i=0;i<gender.length;i++){
+		if(gender[i].checked){ 
+		choosen=gender[i].value; break;
+		}
+	}
+	if(choosen==""){
+		genderS.innerHTML="Please select gender ";
+		genderS.className ="greskeR2"; 
+		greske++;
+	} else{
+		genderS.innerHTML="";
+	}
+	if(!reg_pass.test(pass)) {
+		passS.innerHTML="Password must be at least 4 characters";
+		passS.className ="greskeR2";
+		document.getElementById("tbPassword2").style.border = "1px solid #a94442";
+		greske++;
+	}else{
+		passS.innerHTML="";
+		document.getElementById("tbPassword2").style.border = "none";
+	}
+	if(reg_pass.test(repass) && pass==repass){
+		passS2.innerHTML="";
+		document.getElementById("tbPassword22").style.border = "none";
+	}else{
+		passS2.innerHTML="Passwords must match ";
+		passS2.className ="greskeR2";
+		document.getElementById("tbPassword22").style.border = "1px solid #a94442";
+		greske++;
+	}
+	
+	if(greske==0){
+		return true;
+	}else{
+		return false;
+	}
+}
+function reg1() {
+		var username = document.getElementById("tbUsername2").value;
+		var userS = document.getElementById("userS");
+		var reg_user=/^[\w\s\/\.\_\d]{4,}$/;
+		if(!reg_user.test(username)){
+			userS.innerHTML="Username must be at least 4 characters";
+			userS.className ="greskeR2";
+			document.getElementById("tbUsername2").style.border = "1px solid #a94442"; 
+		}else{
+			userS.innerHTML=""; 
+			document.getElementById("tbUsername2").style.border = "none";
+		}
+} 
+function reg2() { 
+		var email = document.getElementById("tbEmail2").value;
+		var emailS = document.getElementById("emailS");
+		var reg_email=/^[\w\.]+[\d]*@[\w]+\.\w{2,3}(\.[\w]{2})?$/;
+		if(!reg_email.test(email)){
+			emailS.innerHTML="Please enter valid email";
+			emailS.className ="greskeR2";
+			document.getElementById("tbEmail2").style.border = "1px solid #a94442"; 
+		}else{
+			emailS.innerHTML="";
+			document.getElementById("tbEmail2").style.border = "none";
+		}
+} 
+function reg3() {
+		var pass = document.getElementById("tbPassword2").value;
+		var passS = document.getElementById("passS");
+		var reg_pass=/^[\w\s\/\.\_\d]{4,}$/;
+		if(!reg_pass.test(pass)) {
+			passS.innerHTML="Password must be at least 4 characters";
+			passS.className ="greskeR2";
+			document.getElementById("tbPassword2").style.border = "1px solid #a94442"; 
+		}else{
+			passS.innerHTML="";
+			document.getElementById("tbPassword2").style.border = "none";
+		}
+} 
+function reg4() {  
+		var pass = document.getElementById("tbPassword2").value;
+		var repass = document.getElementById("tbPassword22").value;
+		var passS2 = document.getElementById("passS2");
+		var reg_pass=/^[\w\s\/\.\_\d]{4,}$/;
+	if(reg_pass.test(repass) && pass==repass){
+		passS2.innerHTML="";
+		document.getElementById("tbPassword22").style.border = "none";
+	}else{
+		passS2.innerHTML="Passwords must match ";
+		passS2.className ="greskeR2";
+		document.getElementById("tbPassword22").style.border = "1px solid #a94442"; 
+	}
+} 

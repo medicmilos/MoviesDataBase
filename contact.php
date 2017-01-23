@@ -64,7 +64,6 @@
 			<div id="primary-content">
 				<div class="primary">
 					<form class="" action='<?php echo $_SERVER['PHP_SELF']; ?>' method="GET" name="ContactForm" id="ContactForm" onSubmit='return check2();'>
-						<input type="hidden" name="page" value="1" />
 						<?php 
 							if(isset($_GET["CaptchaPass"])){
 								echo "<div>Message Sent</div>";
@@ -93,16 +92,16 @@
 									<span id="span-email" class="" aria-hidden="true"></span>
 								</li>
 							</div>
-							<div id="div-message" class="form-group has-feedback">
-								<li>
-									<label for="contact-message" class="control-label">Message</label>
-									<textarea class="form-control" name="message" id="contact-message" rows="10" onBlur="messagecheck();"></textarea>
-									<span id="span-message" class="" aria-hidden="true"></span>
-								</li>
-							</div>
 							<div id="div-captcha" class="form-group has-feedback">
 								<li>
 									<div class="g-recaptcha" data-sitekey="6LcqyhEUAAAAANEWtmGKvZJnxMB7BQdDChhWcgZA"></div>
+								</li>
+							</div>
+							<div id="div-message" class="form-group has-feedback">
+								<li>
+									<label for="contact-message" class="control-label">Message</label>
+									<textarea class="form-control" name="message" id="contact-message" onBlur="messagecheck();"></textarea>
+									<span id="span-message" class="" aria-hidden="true"></span>
 								</li>
 							</div>
 							<div class="form-group">

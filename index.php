@@ -12,6 +12,7 @@
 		<meta name="author" content="Milos Medic"/>
 		<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="src/css/main.css"/> 	 	
 		<link rel="stylesheet" type="text/css" href="src/css/slider.css"/> 	 	
 		<script src='src/js/jquery-3.1.1.min.js'></script>
@@ -27,7 +28,7 @@
 				}else{
 					$page=100;
 				} 
-				 
+				
 				switch($page){
 					case "0": include("content.php");break;
 					case "1": include("contact.php"); break; 
@@ -45,6 +46,8 @@
 					case "13": include("manage_movie.php"); break;  
 					case "14": include("manage_polls.php"); break;  
 					case "15": include("manage_poll.php"); break;  
+					case "16": include("register.php"); break;  
+					case "17": include("confirm.php"); break;  
 					default: include("content.php");break;
 				}
 			 

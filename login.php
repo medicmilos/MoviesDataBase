@@ -80,7 +80,7 @@
 										<input type='text' id='tbUsername' name='tbUsername' placeholder='username'/>
 										<input type='password' id='tbPassword' name='tbPassword' placeholder='password'/>
 										<input type='submit' id='btnLogin' name='btnLogin' value='Login'/> 
-										<p class='message'>Not registered? <a href='register.php'>Create an account</a></p>
+										<p class='message'>Not registered? <a href='index.php?page=16'>Create an account</a></p>
 									</form>
 								</div>                     
 							</li> 

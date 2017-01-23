@@ -39,9 +39,7 @@
 										$br++;
 									}
 									/*<span class="menu-line">&#x0007C;</span>*/
-							?> 
-
-							
+							?>  
 							  </div>
 							</div>
 						</aside>
