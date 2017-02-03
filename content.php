@@ -48,66 +48,127 @@
 						<aside id="widget-custom-postson-10" class="widget widget-custom-postson">
 							<h4 class="widget-title-news">MORE NEWS</h4>
 							<div class="custom-posts-holder row news">
-								<div class="post">
-									<div id="innerp" class="post-inner">
-										<div class="post-image">
-											<img width="185" height="145" src="https://ld-wp.template-help.com/wordpress_51822/wp-content/uploads/2016/02/img9-185x145.jpg" class="wp-post-image" alt="Alex Cross (2012)">        
+														<?php								
+						// PAGINACIJA ///
+								include('konekcija.php');
+								$upit="SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director";
+								$sql=mysql_query($upit,$konekcija);
+								mysql_close($konekcija);
+								
+								$nr=mysql_num_rows($sql); //prebrojimo redove
+								if(isset($_GET['pn'])) //uzmemo vrednost iz URL adrese
+								{
+									$pn=preg_replace('#[^0-9]#i','',$_GET['pn']); 
+								}
+								else
+								{
+									$pn=1; //ako nema vrednosti znaci da je korisnik prvi put tu i dolazimo na prvo stranu
+								}
+								
+								$items_per_page=5; 
+								
+								$last_page=ceil($nr/$items_per_page); 
+								if($pn<1)
+								{
+									$pn=1;
+								}
+								else if($pn>$last_page)
+								{
+									$pn=$last_page;
+								}
+								
+								$center_pages=''; //prikaz brojeva stranica
+								$sub1=$pn-1; 
+								$sub2=$pn-2;
+								$add1=$pn+1; 
+								$add2=$pn+2;
+								
+								if($pn == 1)  //ako je na prvoj strani
+								{
+									$center_pages.="&nbsp; <span class='page_num_active'>$pn</span>&nbsp;"; //prikazemo taj broj gde se nalazi
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$add1'>$add1</a> &nbsp;"; //i opciju da doda jos jednu stranicu
+								}
+								else if($pn == $last_page) //ako je na poslednjoj strani
+								{
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$sub1'>$sub1</a> &nbsp;"; //prikazemo opciju za jednu manje
+									$center_pages.="&nbsp; <span class='page_num_active'>$pn</span>&nbsp;"; //i stranicu gde se sad nalazi
+								}
+								else if($pn > 2 && $pn < ($last_page-1))
+								{
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$sub2'>$sub2</a> &nbsp;";
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$sub1'>$sub1</a> &nbsp;";
+									$center_pages.="&nbsp; <span class='page_num_active'>$pn</span>&nbsp;";
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$add1'>$add1</a> &nbsp;";
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$add2'>$add2</a> &nbsp;";
+								}
+								else if($pn > 1 && $pn < $last_page)
+								{
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$sub1'>$sub1</a> &nbsp;";
+									$center_pages.="&nbsp; <span class='page_num_active'>$pn</span>&nbsp;";
+									$center_pages.="&nbsp; <a href='index.php?page=0&pn=$add1'>$add1</a> &nbsp;";
+								} 		 
+								
+								$pagination_display=''; 
+								
+								if($last_page != "1") //ako ima vise od jedne strane, ako nema nista od ovoga se nece prikazati
+								{
+									//$pagination_display.="Page <strong>$pn</strong> of $last_page"; //prikaze stranu gde se nalazimo od kolikog broja strana
+									
+									if($pn != 1) //ako nismo na prvoj strani
+									{
+										$previous=$pn - 1;
+										$pagination_display.="&nbsp; <a href='index.php?page=0&pn=$previous' class='nazad'><i class='fa fa-angle-double-left' aria-hidden='true'></i></a>";
+									}
+									
+									$pagination_display.="<span class='pagination_numbers'>$center_pages<span>";
+									
+									if($pn != $last_page) //ako nismo na zadnjoj strani
+									{ 
+										$next_page=$pn+1; 
+										$pagination_display.="&nbsp; <a href='index.php?page=0&pn=$next_page' class='napred'><i class='fa fa-angle-double-right' aria-hidden='true'></i></a>"; 
+									}
+								}		
+								
+								$pom=($pn-1)*$items_per_page;
+								$upit = sprintf("SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director LIMIT %d,$items_per_page",$pom);
+									include("konekcija.php");
+									$rezultat = mysql_query($upit, $konekcija);  
+									mysql_close($konekcija);
+									
+									while($red = mysql_fetch_array($rezultat)){  
+										$idmovie = $red['id_movies'];
+										$title = $red['title'];
+										$year = $red['release_year'];
+										$poster = $red['poster']; 
+										$description = $red['description']; 
+										$username = $red['username'];
+										$time = $red['time'];
+										
+										$prvideo="";
+											if(strlen($description)>150){
+											$prvideo=substr($description, 0, 150); 
+										}else{
+											$prvideo=$description;
+										}
+										echo ("<div class='post'>
+									<div id='innerp' class='post-inner'>
+										<div class='post-image'>
+											<img width='185' height='145' src='assets/images/".$poster."' class='wp-post-image' alt='".$title."'>        
 										</div>
-										<div class="post-content">
-											<h6 class="widget-title"><a href="https://ld-wp.template-help.com/wordpress_51822/2016/02/17/alex-cross-2012/" title="Alex Cross (2012)">Alex Cross (2012)</a>
-											</h6>                                                                    
+										<div class='post-content'>
+											<h6 class='widget-title'><a href='index.php?page=3&movie=".$idmovie."' title='".$title."'>".$title." (".$year.")</a></h6> 
+											<p>".$prvideo."...</p>
+											<div class='meta'>
+											<span class='author'>posted by <span class='post-author'>".$username."</span><span class='dottclass'>&middot;</span></span>
+											<span class='post__date'>".$time."</span> </div>
 										</div>
-										<a href="#" class="btn"></a>
+										<a href='#' class='btn'></a>
 									</div>
-								</div>
-								<div class="post">
-									<div id="innerp" class="post-inner">
-										<div class="post-image">
-											<img width="185" height="145" src="https://ld-wp.template-help.com/wordpress_51822/wp-content/uploads/2016/02/img10-1-185x145.jpg" class="wp-post-image" alt="Broken city (2013)">        
-										</div>
-										<div class="post-content">
-											<h6 class="widget-title"><a href="https://ld-wp.template-help.com/wordpress_51822/2016/02/15/broken-city-2013/" title="Broken city (2013)">Broken city (2013)</a>
-											</h6>                                                                    
-										</div>
-										<a href="#" class="btn"></a>
-									</div>
-								</div>
-								<div class="post">
-									<div id="innerp" class="post-inner">
-										<div class="post-image">
-											<img width="185" height="145" src="https://ld-wp.template-help.com/wordpress_51822/wp-content/uploads/2016/03/img17-185x145.jpg" class="wp-post-image" alt="The Wicked  (2015)">        
-										</div>
-										<div class="post-content">
-											<h6 class="widget-title"><a href="https://ld-wp.template-help.com/wordpress_51822/2016/02/14/the-wicked-2015/" title="The Wicked  (2015)">The Wicked (2015)</a>
-											</h6>                                                                    
-										</div>
-										<a href="#" class="btn"></a>
-									</div>
-								</div>
-								<div class="post">
-									<div id="innerp" class="post-inner">
-										<div class="post-image">
-											<img width="185" height="145" src="https://ld-wp.template-help.com/wordpress_51822/wp-content/uploads/2016/03/img17-185x145.jpg" class="wp-post-image" alt="The Wicked  (2015)">        
-										</div>
-										<div class="post-content">
-											<h6 class="widget-title"><a href="https://ld-wp.template-help.com/wordpress_51822/2016/02/14/the-wicked-2015/" title="The Wicked  (2015)">The Wicked (2015)</a>
-											</h6>                                                                    
-										</div>
-										<a href="#" class="btn"></a>
-									</div>
-								</div>
-								<div class="post">
-									<div id="innerp" class="post-inner">
-										<div class="post-image">
-											<img width="185" height="145" src="https://ld-wp.template-help.com/wordpress_51822/wp-content/uploads/2016/03/img17-185x145.jpg" class="wp-post-image" alt="The Wicked  (2015)">        
-										</div>
-										<div class="post-content">
-											<h6 class="widget-title"><a href="https://ld-wp.template-help.com/wordpress_51822/2016/02/14/the-wicked-2015/" title="The Wicked  (2015)">The Wicked (2015)</a>
-											</h6>                                                                    
-										</div>
-										<a href="#" class="btn"></a>
-									</div>
-								</div>
+								</div>");
+												
+									}
+									echo ("<div id='pagination'>$pagination_display</div>");
+							?>
 							</div>
 						</aside>
 					</main>

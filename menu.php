@@ -8,7 +8,7 @@
 									}else{
 										
 									}
-								$upit = "SELECT * FROM menu WHERE menu_place='1'";
+								$upit = sprintf("SELECT * FROM menu WHERE menu_place=%d ORDER BY parent",1);
 									include("konekcija.php");
 									$rezultat = mysql_query($upit, $konekcija);  
 									mysql_close($konekcija);

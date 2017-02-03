@@ -9,8 +9,9 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 				<?php
+if(isset($_SESSION['user_mod'])==1){
 					if(isset($_REQUEST['delete'])){
-			$upit = "DELETE FROM poll WHERE id_poll='".$_REQUEST['delete']."'";
+			$upit = sprintf("DELETE FROM poll WHERE id_poll=%d",$_REQUEST['delete']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -52,7 +53,7 @@
 			
 		
 		
-		$upit = "SELECT * FROM poll LIMIT $koliko_po_strani OFFSET $skriveno";
+		$upit = sprintf("SELECT * FROM poll LIMIT %d OFFSET %d",$koliko_po_strani,$skriveno);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -91,7 +92,7 @@
 			echo("</div>");
 			
 		
-	
+}	
 	?>
 
 				

@@ -9,13 +9,13 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 			<?php
-			
+if(isset($_SESSION['user_mod'])==1){			
 				if(isset($_REQUEST['btnSaveUprofile'])){
 			@$question = ($_REQUEST['taEditEmail']);
 			@$comment = ($_REQUEST['taEditPass']);  
 			@$active = ($_REQUEST['rbEditMod']);  
 			
-			$upit = "UPDATE poll SET question = '".$question."', active='".$active."' WHERE id_poll = '".$_REQUEST['id']."'";
+			$upit = sprintf("UPDATE poll SET question = '%s', active=%d WHERE id_poll = %d",$question,$active,$_REQUEST['id']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija); 
@@ -23,7 +23,7 @@
 		}
 
 
-	$upit = "SELECT * FROM poll WHERE id_poll='".$_REQUEST['id']."'";
+	$upit = sprintf("SELECT * FROM poll WHERE id_poll=%d",$_REQUEST['id']);
 			include("konekcija.php");
 			$rezultat = mysql_query($upit, $konekcija);  
 			mysql_close($konekcija);
@@ -86,7 +86,7 @@
 		
 		
 		
-	
+}	
 	?>
 
 				

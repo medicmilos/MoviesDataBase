@@ -11,9 +11,9 @@
 		</div>
 	 
 	<?php   
-	
+if(isset($_SESSION['user_mod'])==1){	
 	if(isset($_REQUEST['delete'])){
-			$upit = "DELETE FROM movies WHERE id_movies='".$_REQUEST['delete']."'";
+			$upit = sprintf("DELETE FROM movies WHERE id_movies=%d",$_REQUEST['delete']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -54,7 +54,7 @@
 			
 		
 			echo ("<div class='adduser save2'><a href='index.php?page=12'>Add new movie</a></div>");		
-		$upit = "SELECT * FROM movies LIMIT $koliko_po_strani OFFSET $skriveno";
+		$upit = sprintf("SELECT * FROM movies LIMIT %d OFFSET %d",$koliko_po_strani,$skriveno);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -88,6 +88,7 @@
 			}
 			echo("</table></form>");
 			echo("</div>");
+}
 		?>
 				</div>
 				<?php

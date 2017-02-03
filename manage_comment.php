@@ -10,12 +10,13 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 	 
-	<?php   
+	<?php  
+if(isset($_SESSION['user_mod'])==1){	
 	if(isset($_REQUEST['btnSaveUprofile'])){
 			@$username = ($_REQUEST['taEditEmail']);
 			@$comment = ($_REQUEST['taEditPass']); 
 			
-			$upit = "UPDATE comments SET username = '".$username."', comment = '".$comment."'  WHERE id_comments = '".$_REQUEST['id']."'";
+			$upit = sprintf("UPDATE comments SET username = '%s', comment = '%s'  WHERE id_comments = %d",$username,$comment,$_REQUEST['id']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija); 
@@ -25,7 +26,7 @@
 
 
 
-	$upit = "SELECT * FROM comments WHERE id_comments='".$_REQUEST['id']."'";
+	$upit = sprintf("SELECT * FROM comments WHERE id_comments=%d",$_REQUEST['id']);
 			include("konekcija.php");
 			$rezultat = mysql_query($upit, $konekcija);  
 			mysql_close($konekcija);
@@ -62,7 +63,7 @@
 		
 		 echo("</form>");
 		
-	
+}	
 	?>
 				</div>
 				<?php

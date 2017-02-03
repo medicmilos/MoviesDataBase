@@ -16,7 +16,7 @@
 					
 					echo ("<div class='main-window big'>
 							<div class='main-window-0-background senka'>
-								<img src='assets/images/".$poster."'>
+								<img src='assets/images/".$poster."' alt='".$title."'>
 							</div>					
 							<div class='window-description'>
 								<a href='index.php?page=3&movie=".$idmovie."' class='title'>".$title." (".$year.")</a> 
@@ -43,7 +43,7 @@
 					
 					echo ("<div class='aside-window-".$br." small'>
 							<div class='aside-window-".$br."-background senka'>
-								<img src='assets/images/".$poster."'>
+								<img src='assets/images/".$poster."' alt='".$title."'>
 							</div>					
 							<div class='window-description'>
 								<a href='index.php?page=3&movie=".$idmovie."' class='title'>".$title." (".$year.")</a> 

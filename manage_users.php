@@ -9,7 +9,7 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 				<?php
-				
+if(isset($_SESSION['user_mod'])==1){			
 
 				
 				
@@ -48,7 +48,7 @@
 			
 		
 		
-		$upit = "SELECT * FROM users LIMIT $koliko_po_strani OFFSET $skriveno";
+		$upit = sprintf("SELECT * FROM users LIMIT %d OFFSET %d",$koliko_po_strani,$skriveno);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -105,22 +105,12 @@
 			echo("</div>");
 
 		if(isset($_REQUEST['delete'])){
-			$upit = "DELETE FROM users WHERE id_users='".$_REQUEST['delete']."'";
+			$upit = sprintf("DELETE FROM users WHERE id_users=%d",$_REQUEST['delete']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
 		}
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+}
 				?>
 				</div>
 				<?php

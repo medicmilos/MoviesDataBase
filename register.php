@@ -35,12 +35,12 @@
 		
 		if($g==0){ 
 			$password = md5($password); 
-			$upit = "SELECT * FROM users WHERE email='".$email."' OR username = '".$username."' ";
+			$upit = sprintf("SELECT * FROM users WHERE email='%s' OR username = '%s' ",$email,$username);
 			include("konekcija.php");
 			$rezultat = mysql_query($upit, $konekcija);
 			mysql_close($konekcija);
 			if(mysql_num_rows($rezultat) == 0){
-				$upit = "INSERT INTO users (id_users, username, password, email, gende, user_mod, active) VALUES (NULL, '".$username."', '".$password."', '".$email."', '".$gender."', '2', '0')";
+				$upit = sprintf("INSERT INTO users (id_users, username, password, email, gende, user_mod, active) VALUES (NULL, '%s', '%s', '%s', '%s', %d, %d)",$username,$password,$email,$gender,2,0);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);

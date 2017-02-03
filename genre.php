@@ -6,7 +6,8 @@
 							<?php								
 						// PAGINACIJA ///
 								include('konekcija.php');
-								$sql=mysql_query("SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director WHERE g.name='".$_REQUEST['genre']."'",$konekcija);
+								$upit=sprintf("SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director WHERE g.name='%s'",$_REQUEST['genre']);
+								$sql=mysql_query($upit,$konekcija);
 								mysql_close($konekcija);
 								
 								$nr=mysql_num_rows($sql); //prebrojimo redove
@@ -86,8 +87,9 @@
 										$pagination_display.="&nbsp; <a href='index.php?page=4&pn=$next_page&genre=$genre1' class='napred'><i class='fa fa-angle-double-right' aria-hidden='true'></i></a>"; 
 									}
 								}		
-
-								$upit = "SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director WHERE g.name='".$_REQUEST['genre']."' LIMIT ".($pn-1)*$items_per_page.",$items_per_page";
+								
+								$pom=($pn-1)*$items_per_page;
+								$upit = sprintf("SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director WHERE g.name='%s' LIMIT %d,$items_per_page",$_REQUEST['genre'],$pom);
 									include("konekcija.php");
 									$rezultat = mysql_query($upit, $konekcija);  
 									mysql_close($konekcija);

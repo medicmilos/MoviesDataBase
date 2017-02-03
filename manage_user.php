@@ -9,6 +9,7 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 				<?php
+if(isset($_SESSION['user_mod'])==1){
 if(isset($_REQUEST['btnSaveUprofile'])){
 			@$email2 = ($_REQUEST['taEditEmail']);
 			@$pass2 = ($_REQUEST['taEditPass']);
@@ -16,7 +17,7 @@ if(isset($_REQUEST['btnSaveUprofile'])){
 			@$mod2 = ($_REQUEST['rbEditMod']);
 			@$active2 = ($_REQUEST['rbEditActive']);
 			
-			$upit = "UPDATE users SET email = '".$email2."', password = '".$pass2."', description = '".$desc2."', user_mod = '".$mod2."', active = '".$active2."' WHERE id_users = '".$_REQUEST['id']."'";
+			$upit = sprintf("UPDATE users SET email = '%s', password = '%s', description = '%s', user_mod = %d, active = %d WHERE id_users = %d",$email2,$pass2,$desc2,$mod2,$active2,$_REQUEST['id']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija); 
@@ -26,7 +27,7 @@ if(isset($_REQUEST['btnSaveUprofile'])){
 
 
 
-	$upit = "SELECT * FROM users WHERE id_users='".$_REQUEST['id']."'";
+	$upit = sprintf("SELECT * FROM users WHERE id_users=%d",$_REQUEST['id']);
 			include("konekcija.php");
 			$rezultat = mysql_query($upit, $konekcija);  
 			mysql_close($konekcija);
@@ -98,6 +99,7 @@ if(isset($_REQUEST['btnSaveUprofile'])){
 		}
 		
 		 echo("</form>");
+}
 				?>
 				</div>
 				<?php

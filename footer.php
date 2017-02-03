@@ -11,13 +11,13 @@
 				$maill = trim($mail);
 				
 		
-		$upit = "INSERT INTO newsletter (id_email, email) VALUES (NULL,'".$mail."')";
+		$upit = sprintf("INSERT INTO newsletter (id_email, email) VALUES (NULL,'%s')",$mail);
 		include("konekcija.php");
 		mysql_query($upit, $konekcija);
 		mysql_close($konekcija);
 			}
 		}
-?>	
+?>	<div class="cisti"></div>
 	<footer class="site-footer container">
 			<div class="footer-area-wrap invert">
 				<div class="container">
@@ -27,7 +27,7 @@
 							<ul>
 								<?php
 									
-									$upit = "SELECT * FROM menu WHERE menu_place='2' LIMIT 10";
+									$upit = sprintf("SELECT * FROM menu WHERE menu_place=%d LIMIT 10",2);
 										include("konekcija.php");
 										$rezultat = mysql_query($upit, $konekcija);  
 										mysql_close($konekcija);
@@ -46,7 +46,7 @@
 								<ul id="menu-footer-menu" class="menu">
 							<?php
 							
-								$upit = "SELECT * FROM menu WHERE menu_place='1'";
+								$upit = sprintf("SELECT * FROM menu WHERE menu_place=%d",1);;
 									include("konekcija.php");
 									$rezultat = mysql_query($upit, $konekcija);  
 									mysql_close($konekcija);

@@ -607,7 +607,7 @@ color:#fff;
 #primary-content{
 	width: 1200px;
     margin: 33px auto;
-    min-height: 1950px;
+    min-height: 1600px;
 	position:relative;
 }
 /*primary*/
@@ -689,14 +689,25 @@ color:#fff;
 .site-main .widget-custom-postson .custom-posts-holder .post .post-inner .post-content {
     width: 75% !important;
 }
-.widget-custom-postson .custom-posts-holder .post .post-inner .post-content .widget-title {
+.post-content .widget-title {
     font-size: 14px;
     line-height: 19px;
-    text-transform: uppercase;
-    position: absolute;
-    top: 50%;
-    transform: translate(0,-50%);
-    margin: 0 20px 0 30px;
+    text-transform: uppercase; 
+	margin: 25px 0px 10px 20px;
+}
+.post-content p{ 
+	color: #888888; 
+	margin: 15px 0px 10px 20px;
+}
+.post-content .meta span{ 
+	color:#fff; 
+	margin: 0px 0px 10px 10px;
+}
+.post-content .dottclass{ 
+	font-size:14px;
+}
+.post-content .post-author, .post-content .post__date{ 
+	color:#3ec0e1 !important;
 }
 .widget-custom-postson .custom-posts-holder .post .post-inner .post-content .widget-title a{
    text-decoration: none;
@@ -945,7 +956,7 @@ color:#fff;
 }
 .site-footer.default .footer-copyright {
     padding: 5px 10px;  
-}
+} 
 .site-info__flex {
     text-align:center; 
 } 
@@ -1322,13 +1333,14 @@ color:#fff;
 }
 .entry-header+.post-thumbnail>.post-thumbnail__img {
     margin-top: 25px;
+	max-height:480px !important;
 }
 .post-thumbnail__img {
     display: inline-block;
     vertical-align: top;
 }
 .post-thumbnail img {
-    height: auto;
+    max-height: 145px;
     max-width: 100%;
 }
 .post-thumbnail img {
@@ -1339,9 +1351,8 @@ color:#fff;
 }  
 /*genre*/
 .primary .posts-list__item{
-    padding: 20px 30px 15px 30px!important; 
-    content: "";
-    display: table;
+    padding: 20px 30px 25px 30px!important; 
+    content: ""; 
     table-layout: fixed; 
 }
 .posts-list__item:nth-child(odd) {
@@ -1867,7 +1878,7 @@ color:#fff;
 .main-window:hover,.small:hover{ 
     z-index: 999;
 	transition: all .2s ease-in-out;
-    transform: scale(1.08);
+    transform: scale(1.04);
 	border:2px solid #f1bd3b;
 }
 /*REGISTER.PHP*/
@@ -1986,4 +1997,48 @@ color:#fff;
     -moz-animation: change_height 1s;
     -o-animation: change_height 1s;
     animation: change_height 1s;
+}
+/* Galerija slika */
+#galerija{
+	width:100%; 
+	margin:20px auto;
+}
+.img2{   
+	float:left;
+	text-align:center; 
+	margin: 40px 18px 0px 0px;
+    padding: 0 30px 0 50px;
+    border: 1px solid #cbcbcb;
+}
+.img2 img{
+	display:inline; 
+	width:100px;
+	height:100px;  
+	border: 2px solid #CCC;
+    padding: 2px;
+    margin: 10px 20px 10px 0;
+    vertical-align: top;
+}
+.img2 img:hover{
+	border-color:#4F4F4F;
+}
+.descr2{
+	color:#fff;
+}
+.red_slika{
+	margin-left:60px;
+}
+.posts #post-content {
+    overflow: hidden;
+    padding-left: 30px;
+    padding-top: 22px;
+    padding-bottom: 0;
+    -webkit-transition: 0.4s ease all;
+    transition: 0.4s ease all;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 24%;
+    width: 70%;
 }

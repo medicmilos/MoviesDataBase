@@ -3,9 +3,7 @@
 			<div id="primary-content">
 				<div class="primary">
 				
-				<?php
-				
-				
+				<?php 
 					if(@$_SESSION['user_mod']=='1'){ 
 			echo("
 			

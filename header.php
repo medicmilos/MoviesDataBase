@@ -30,7 +30,7 @@
 							<li><a href="index.php?page=0">home</a></li>
 							<?php
 								
-								$upit = "SELECT * FROM menu WHERE menu_place='2' LIMIT 6";
+								$upit = sprintf("SELECT * FROM menu WHERE menu_place=%d LIMIT %d",2,6);
 									include("konekcija.php");
 									$rezultat = mysql_query($upit, $konekcija);  
 									mysql_close($konekcija);
@@ -46,7 +46,7 @@
 								<a href="#" rel="#">OTHER GENRES</a>
 								<ul class="sub-menu">
 									<?php
-										$upit = "SELECT * FROM menu WHERE menu_place='2' LIMIT 6,17";
+										$upit = sprintf("SELECT * FROM menu WHERE menu_place=%d LIMIT %d,%d",2,6,17);
 											include("konekcija.php");
 											$rezultat = mysql_query($upit, $konekcija);  
 											mysql_close($konekcija);

@@ -11,7 +11,7 @@
 	</div>
 	
 <?php
-
+if(isset($_SESSION['user_mod'])==1){
 $rezultat1='';
 if(isset($_REQUEST['btnSaveMovie'])) {
 		$title = trim($_REQUEST['tbTitle']); 
@@ -81,8 +81,8 @@ if(isset($_REQUEST['btnSaveMovie'])) {
 						}
 
 						if (move_uploaded_file($temp_name, $location.$name)) {
-							$upit = "INSERT INTO movies (id_movies, title, id_genre, release_year, cast, id_director, description, poster, username) VALUES (NULL, '".$title."', '".$id_genre."', '".$release_year."', '".$cast1.", ".$cast2.", ".$cast3."', '".$brojdirektora."', '".$description."', '".$name."', '".$_SESSION['username']."')";
-							$upit4 = "INSERT INTO director (id_director, name) VALUES (NULL,'".$director."')";
+							$upit = sprintf("INSERT INTO movies (id_movies, title, id_genre, release_year, cast, id_director, description, poster, username) VALUES (NULL, '%s', %d, %d, '%s, %s, %s', %d, '%s', '%s', '%s')",$title,$id_genre, $release_year,$cast1,$cast2,$cast3,$brojdirektora,$description,$name,$_SESSION['username']);
+							$upit4 = sprintf("INSERT INTO director (id_director, name) VALUES (NULL,'%s')",$director);
 							include("konekcija.php");
 							$rezultat = mysql_query($upit, $konekcija);
 							$rezultat4 = mysql_query($upit4, $konekcija);
@@ -148,6 +148,7 @@ if(isset($_REQUEST['btnSaveMovie'])) {
 	");
 
 	echo ("</table></form><div class='bottomrez'><b>$rezultat1</b></div></div>");
+}
 	?>
 				</div>
 				<?php

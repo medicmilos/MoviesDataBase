@@ -4,22 +4,23 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Movies database</title>
+		<title>Movies database</title> 
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="The Free Movie Database is a free web service to obtain movie information."/>
-		<meta name="keywords" content=""/>
+		<meta name="keywords" content="movies, movie, online, free, database, movie information"/>
 		<meta name="author" content="Milos Medic"/>
 		<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="src/css/main.css"/> 	 	
 		<link rel="stylesheet" type="text/css" href="src/css/slider.css"/> 	 	
+		<link rel="stylesheet" type="text/css" href="src/css/lightbox.min.css"/> 	 	
 		<script src='src/js/jquery-3.1.1.min.js'></script>
-		<script src='src/js/main.js'></script> 
+		<script src='src/js/main.js'></script>  
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
-	<body>
+	<body onLoad='ajaxprovera();'>
 		<?php
 			include("header.php");
 
@@ -48,11 +49,13 @@
 					case "15": include("manage_poll.php"); break;  
 					case "16": include("register.php"); break;  
 					case "17": include("confirm.php"); break;  
+					case "18": include("gallery.php"); break;  
 					default: include("content.php");break;
 				}
 			 
 
 			include("footer.php");
 		?>
+	 <script type="text/javascript" src="src/js/lightbox-plus-jquery.min.js"></script>
 	</body>
 </html>

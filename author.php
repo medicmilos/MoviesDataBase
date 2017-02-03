@@ -10,7 +10,7 @@
 								</h4>
 							</div>
 							<div id="slika">
-								<img src="assets/images/members/milos.jpg" title="author" alt="milos medic"/>
+								<img src="assets/images/members/milos.jpg" title="author" alt="Milos Medic"/>
 							</div>
 							<div id="ukratko">
 								<p>

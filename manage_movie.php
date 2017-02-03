@@ -9,12 +9,13 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 					<?php   
+if(isset($_SESSION['user_mod'])==1){
 						if(isset($_REQUEST['btnSaveUprofile'])){
 								@$title = ($_REQUEST['taEditEmail']);
 								@$year = ($_REQUEST['taEditPass']); 
 								@$description = ($_REQUEST['taEditDesc']); 
 								
-								$upit = "UPDATE movies SET title = '".$title."', release_year = '".$year."', description = '".$description."'  WHERE id_movies = '".$_REQUEST['id']."'";
+								$upit = sprintf("UPDATE movies SET title = '%s', release_year = $d, description = '%s'  WHERE id_movies = %d",$title,$year,$description,$_REQUEST['id']);
 									include("konekcija.php");
 									$rezultat = mysql_query($upit, $konekcija);  
 									mysql_close($konekcija); 
@@ -24,7 +25,7 @@
 
 
 
-						$upit = "SELECT * FROM movies WHERE id_movies='".$_REQUEST['id']."'";
+						$upit = sprintf("SELECT * FROM movies WHERE id_movies=%d",$_REQUEST['id']);
 								include("konekcija.php");
 								$rezultat = mysql_query($upit, $konekcija);  
 								mysql_close($konekcija);
@@ -62,7 +63,7 @@
 							}
 							
 							 echo("</form>");
-									
+}			
 					?>
 				</div>
 				<?php

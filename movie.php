@@ -3,7 +3,7 @@
 								$id_movies=$_REQUEST['movie'];
 								$username=$_SESSION['username'];
 								$comment=$_REQUEST['replycomment'];
-								$upit2 = "INSERT INTO comments (id_comments, id_movies,username,comment) VALUES(NULL,'".$id_movies."','".$username."','".$comment."')";
+								$upit2 = sprintf("INSERT INTO comments (id_comments, id_movies,username,comment) VALUES(NULL,%d,'%s','%s')",$id_movies,$username,$comment);
 									include("konekcija.php");
 									$rezultat2 = mysql_query($upit2, $konekcija);  
 									mysql_close($konekcija);
@@ -16,7 +16,7 @@
 				<div id="primary-content">
 					<div class="primary">
 						<?php
-							$upit = "SELECT m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director WHERE id_movies=".$_REQUEST['movie']."";
+							$upit = sprintf("SELECT m.title as title,m.release_year as release_year,m.poster as poster,m.cast as cast,m.username as username,m.time as time,m.description as description, g.name as genre,d.name as director FROM movies m JOIN genre g ON m.id_genre=g.id_genre JOIN director d ON m.id_director=d.id_director WHERE id_movies=%d",$_REQUEST['movie']);
 								include("konekcija.php");
 								$rezultat = mysql_query($upit, $konekcija);  
 								mysql_close($konekcija);
@@ -59,8 +59,9 @@
 								}
 						// PAGINACIJA ///
 								include('konekcija.php');
-								$sql=mysql_query("SELECT c.id_movies as movie, c.username as username,c.time as time,u.image as image,c.comment as comment FROM comments c JOIN users u ON c.username=u.username WHERE 
-							c.id_movies=".$_REQUEST['movie']." ",$konekcija);
+								$upit3=sprintf("SELECT c.id_movies as movie, c.username as username,c.time as time,u.image as image,c.comment as comment FROM comments c JOIN users u ON c.username=u.username WHERE 
+							c.id_movies=%d",$_REQUEST['movie']);
+								$sql=mysql_query($upit3,$konekcija);
 								mysql_close($konekcija);
 								
 								$nr=mysql_num_rows($sql); //prebrojimo redove
@@ -139,9 +140,10 @@
 										$next_page=$pn+1; 
 										$pagination_display.="&nbsp; <a href='index.php?page=3&pn=$next_page&movie=$movie1' class='napred'><i class='fa fa-angle-double-right' aria-hidden='true'></i></a>"; 
 									}
-								}		
-							@$upit2 = "SELECT c.username as username,c.time as time,u.image as image,c.comment as comment FROM comments c JOIN users u ON c.username=u.username WHERE 
-							c.id_movies=".$_REQUEST['movie']." LIMIT ".($pn-1)*$items_per_page." ,$items_per_page";
+								}	
+							$pom=($pn-1)*$items_per_page;
+							@$upit2 = sprintf("SELECT c.username as username,c.time as time,u.image as image,c.comment as comment FROM comments c JOIN users u ON c.username=u.username WHERE 
+							c.id_movies=".$_REQUEST['movie']." LIMIT %d ,%d",$pom,$items_per_page);
 								include("konekcija.php");
 								$rezultat2 = mysql_query($upit2, $konekcija);  
 								mysql_close($konekcija);

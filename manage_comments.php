@@ -10,9 +10,10 @@
 			<span class='admin-nav-cont'><a href='index.php?page=9'>Polls</a></span>
 		</div>
 	 
-	<?php   
+	<?php 
+if(isset($_SESSION['user_mod'])==1){	
 	if(isset($_REQUEST['delete'])){
-			$upit = "DELETE FROM comments WHERE id_comments='".$_REQUEST['delete']."'";
+			$upit = sprintf("DELETE FROM comments WHERE id_comments=%d",$_REQUEST['delete']);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -54,7 +55,7 @@
 			
 		
 		
-		$upit = "SELECT * FROM comments LIMIT $koliko_po_strani OFFSET $skriveno";
+		$upit = sprintf("SELECT * FROM comments LIMIT %d OFFSET %d",$koliko_po_strani,$skriveno);
 				include("konekcija.php");
 				$rezultat = mysql_query($upit, $konekcija);  
 				mysql_close($konekcija);
@@ -85,7 +86,7 @@
 			echo("</div>");
 			
 		
-	
+	}
 	?>
 				</div>
 				<?php

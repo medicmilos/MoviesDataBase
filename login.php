@@ -8,7 +8,7 @@
  
         $password = md5($password);
 		if(!($username == '' || $password == '')){
-			$upit = "SELECT * FROM users WHERE username='$username' AND active=1 LIMIT 1";
+			$upit = sprintf("SELECT * FROM users WHERE username='%s' AND active=%d LIMIT %d",$username,1,1);
 			include("konekcija.php");	
 			$rezultat = mysql_query($upit, $konekcija);
 			mysql_close($konekcija); 
@@ -102,5 +102,4 @@
 						</ul>
 					</div>");
 		} 
-?>
-					
+?> 				
