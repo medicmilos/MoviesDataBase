@@ -104,7 +104,8 @@
 										$description = $red['description'];
 										$genre = $red['genre'];
 										$username = $red['username'];
-										$time = $red['time'];
+										$time1 = date('j. F Y.',strtotime($red['time']));
+										$time = strtolower($time1);
 										
 										echo ("<article class='posts-list__item card hentry post type-post status-publish format-standard has-post-thumbnail category-comedy tag-tv has-thumb'>
 													<div class='post-list__item-content'>
@@ -123,10 +124,10 @@
 													<div class='entry-meta'>
 														<span class='post-author'>
 															Posted by 
-															<a class='post-author__link' href='#'>".$username."</a>
+															<a class='post-author__link' href='index.php?page=19&usernamem=$username'>".$username."</a> 
 														</span>
 														<span class='post__date'>
-															<a class='post-date__link' href='#'>".$time."</a>
+															<spanclass='post-date__link'>".$time."</span>
 														</span>
 													</div> 
 													</div> 

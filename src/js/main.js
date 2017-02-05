@@ -154,7 +154,15 @@ $('.editdesc .editdesc1').click(function(){
   /*hover main filmova*/ 
 
   
-/*nesto novo*/
+/*status linija iznad hedera*/
+	setTimeout(function(){ 
+		$(".info, .success, .error").slideUp(500);
+	}, 3000);
+	/*---------------------------deskripcija korisnika koja se pojavljuje kad on zeli da je edituje----------------------*/	 
+	$('#description .edit').click(function(){
+	$(this).parent().html("<input type='hidden' name='page' value='19' /><textarea id='taEditProfile' name='taEditProfile' class='form-control'>"+$(this).text()+"</textarea><input type='submit' class='save' value='Save' name='btnSaveDesc'>");
+	});	
+	/*novo*/
 });
 
 /*CONTACT*/

@@ -62,13 +62,13 @@
 
 			 
 					if (mail($to, $subject, $message, $headers)) {    
-						echo("<div class='info'> Confirm your email adress!!</div>");
+						echo("location:index.php?page=0&message=<div class='info'>Confirm your email adress!!</div>");
 					}else {  
-						echo("<div id='erori'>Registration failed!</div>"); 
+						echo("location:index.php?page=16&message=<div id='erori'>Registration failed!</div>"); 
 					}
 				} 
 			}else {
-				echo("<div id='erori'>User with that email or username is registered, <br/>try with another email or username!</div>");
+				echo("location:index.php?page=16&message=<div id='erori'>User with that email or username is registered, <br/>try with another email or username!</div>");
 			}
 		}else{
 			 $greske[]="That email or username is in use";
@@ -83,8 +83,7 @@
 				<div class="primary">
 				<div id="sadrzaj">
 					<div id='registerpage'>
-						<h2>Register now (it's free) </h2><br/> 
-						<?php echo @$_REQUEST['confirmmessage']; ?>
+						<h2>Register now (it's free) </h2><br/>  
 						<form action='<?php echo $_SERVER['PHP_SELF']; ?>' method='GET' onSubmit='return check();'>
 							<input type='hidden' name='page' value='16'/>
 							<input type='text' name='tbUsername2' id='tbUsername2' value='<?php echo @$_REQUEST['tbUsername2']; ?>' placeholder='username' onBlur="reg1();" /><br/>

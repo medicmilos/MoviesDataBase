@@ -142,7 +142,8 @@
 										$poster = $red['poster']; 
 										$description = $red['description']; 
 										$username = $red['username'];
-										$time = $red['time'];
+										$time1 = date('j. F Y.',strtotime($red['time']));
+										$time = strtolower($time1);
 										
 										$prvideo="";
 											if(strlen($description)>150){
@@ -159,7 +160,7 @@
 											<h6 class='widget-title'><a href='index.php?page=3&movie=".$idmovie."' title='".$title."'>".$title." (".$year.")</a></h6> 
 											<p>".$prvideo."...</p>
 											<div class='meta'>
-											<span class='author'>posted by <span class='post-author'>".$username."</span><span class='dottclass'>&middot;</span></span>
+											<span class='author'>posted by <span class='post-author'><a href='index.php?page=19&usernamem=$username'>".$username."</a></span><span class='dottclass'>&middot;</span></span>
 											<span class='post__date'>".$time."</span> </div>
 										</div>
 										<a href='#' class='btn'></a>

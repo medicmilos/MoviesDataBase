@@ -26,20 +26,20 @@
 					$_SESSION['username'] = $username;
 					$_SESSION['id_users'] = $id;
 					$_SESSION['user_mod'] = $db_role;
-					header("location:index.php?<div class='info'> Please confirm your email adress!</div>");
+					header("location:index.php?page=0&message= <div class='info'> Please confirm your email adress!</div></div>");
 			}else{
 				if($password == $db_password) {
 					$_SESSION['username'] = $username;
 					$_SESSION['id_users'] = $id;
 					$_SESSION['user_mod'] = $db_role;
-					header("location:index.php?<div class='success'> Welcome back ".$_SESSION['username']."!</div>");
+					header("location:index.php?page=0&message= <div class='success'> Welcome back ".$_SESSION['username']."!</div>");
 				} else { 
-					header("location:index.php?<div class='error'> Login failed!</div>");
+					header("location:index.php?page=0&message= <div class='error'> Login failed!</div>");
 				}
 			}
 			
 		}else{
-			header("location:index.php?<div class='error'> Login failed!</div>");
+			header("location:index.php?page=0&message= <div class='error'> Login failed!</div>");
 		}
 	}
 	
@@ -49,11 +49,10 @@
 	
 	
 	
-	/*$upit = "SELECT * FROM users WHERE username = '".@$_SESSION['username']."'";
+	$upit = "SELECT * FROM users WHERE username = '".@$_SESSION['username']."'";
 		include("konekcija.php");
 		$rezultat = mysql_query($upit, $konekcija);  
 		mysql_close($konekcija);
-		//header("Location: $_SERVER[PHP_SELF]");
 		
 		$maliavatar2 = '';
 		$slika = ''; 
@@ -62,10 +61,10 @@
 		}  
 		
 		if($slika == ''){ 
-			$maliavatar2 = "<a href='index.php?page=4'><img src='images/members/default.png' width='55px' height='55px' alt='default_img' id='firstavatar' /></a>";   
+			$maliavatar2 = "<a href='index.php?page=19'><img src='assets/images/members/default.png' width='55px' height='55px' alt='default_img' id='firstavatar' /></a>";   
 		}else{
-			$maliavatar2 = "<a href='index.php?page=4'><img src='images/members/$slika' width='55px' height='55px' alt='default_img' id='firstavatar' /></a>";
-		} */
+			$maliavatar2 = "<a href='index.php?page=19'><img src='assets/images/members/$slika' width='55px' height='55px' alt='default_img' id='firstavatar' /></a>";
+		} 
 		
 		if(!isset($_SESSION['id_users'])){
 			echo (
@@ -90,6 +89,10 @@
 		}else{
 			echo (
 				"<div class='header-middle-form'>
+				<div class='maliavatar'>
+					$maliavatar2
+				</div>	
+						<div class='desnipadajucimenu'>
 						<ul>
 							<li id='login' class='login-page'>
 								<a id='login-trigger' href='#'>
@@ -100,6 +103,7 @@
 								</div>                     
 							</li> 
 						</ul>
+						</div>
 					</div>");
 		} 
 ?> 				

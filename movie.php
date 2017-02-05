@@ -8,7 +8,7 @@
 									$rezultat2 = mysql_query($upit2, $konekcija);  
 									mysql_close($konekcija);
 									$movief=$_REQUEST['movie'];
-									header("Location:index.php?page=3&movie='".$movief."'");
+									@header("Location:index.php?page=3&movie='".$movief."'");
 							}
 		?>
 	<div class="content">
@@ -41,7 +41,7 @@
 													</div>
 													<h4 class='entry-title'>".$title." (".$year.")</h4>
 													<div class='entry-meta'>
-														<span class='post-author'>Posted by <a class='post-author__link' href='#'>".$username."</a></span>
+														<span class='post-author'>Posted by <a class='post-author__link' href='index.php?page=19&usernamem=$username'>".$username."</a></span>
 														<span class='post__date'>".$time."</span> 
 													</div> 
 													</header> 
@@ -157,8 +157,12 @@
 									$image = $red['image'];
 									$comment = $red['comment'];
 									
+									if($image==''){
+										$image='default.png';
+									}else{
+										$image=$image;
+									}
 									echo (" 
-												
 													<li class='comment byuser comment-author-admin bypostauthor even thread-even depth-1' id='comment-2'>
 														<article id='div-comment-2' class='comment-body'>
 															<div class='comment-body__holder'>
@@ -168,8 +172,8 @@
 																	</div>
 																	<div class='comment-metadata'>
 																		<span class='posted-by'>Posted by</span> 
-																		<b class='fn'>".$username ."</b> 
-																		<a href='#' class='comment-date'>".$time ."</a> 
+																		<b class='fn'><a href='index.php?page=19&usernamem=$username'>".$username."</a></b> 
+																		<span class='comment-date'>".$time ."</span> 
 																	</div>
 																</footer>
 																<div class='comment-content'>

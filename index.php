@@ -1,5 +1,6 @@
 <?php
 	session_start(); 
+	if(isset($_REQUEST['message'])) echo $_REQUEST['message']; 
 ?> 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,6 +51,7 @@
 					case "16": include("register.php"); break;  
 					case "17": include("confirm.php"); break;  
 					case "18": include("gallery.php"); break;  
+					case "19": include("member.php"); break;  
 					default: include("content.php");break;
 				}
 			 

@@ -3,7 +3,7 @@
 						<h4 class="widget-title">New Added Movies</h4>
 						<div class="custom-posts-holder row ">
 							<?php
-								$upit = "SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster FROM movies m JOIN genre g ON m.id_genre=g.id_genre ORDER BY m.time DESC LIMIT 3";
+								$upit = "SELECT m.id_movies as id_movies,m.title as title,m.release_year as release_year,m.poster as poster,g.name as name FROM movies m JOIN genre g ON m.id_genre=g.id_genre ORDER BY m.time DESC LIMIT 3";
 			
 								include("konekcija.php");
 								$rezultat = mysql_query($upit, $konekcija);   
@@ -12,6 +12,7 @@
 								while($red = mysql_fetch_array($rezultat)){  
 									$idmovie = $red['id_movies'];
 									$title = $red['title'];
+									$genre = $red['name'];
 									$year = $red['release_year'];
 									$poster = $red['poster']; 
 									
@@ -21,9 +22,14 @@
 														<img width='185' height='145' src='assets/images/".$poster."' class='wp-post-image' alt='".$title." (".$year.")'>        
 													</div>
 													<div class='post-content'>
+													<div class='tag'>
+														<a href='index.php?page=4&genre=".$genre."' class='".$genre."'>".$genre."</a>
+													</div> 
 														<h6 class='widget-title'><a href='index.php?page=3&movie=".$idmovie."' title='".$title." (".$year.")'>".$title." (".$year.")</a>
-														</h6>                                                                    
-													</div>
+														</h6>  
+                                                        <div class='meta'>
+															<span class='author'>posted by <span class='post-author'><a href='index.php?page=19&usernamem=$username'>".$username."</a></span></span>  </div>
+														</div>
 													<a href='#' class='btn'></a>
 												</div>
 											</div>");
@@ -48,7 +54,7 @@
 									
 									
 									echo ("<li class='recentcomments'>
-												<span class='comment-author-link'>".$username."</span> on
+												<span class='comment-author-link'><a href='index.php?page=19&usernamem=$username'>".$username."</a></span> on
 												<a href='#'>
 													".$title." (".$year.")
 												</a>

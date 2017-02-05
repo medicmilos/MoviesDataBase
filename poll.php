@@ -2,7 +2,7 @@
 	
 	if(isset($_GET['submit_poll'])){
 		 
-		@$query = "SELECT id_votes FROM poll_votes WHERE ip_address='".$_SERVER["REMOTE_ADDR"]."'"; 
+		@$query = "SELECT id_votes FROM poll_votes WHERE id_address='".$_SERVER["REMOTE_ADDR"]."'"; 
 		include('konekcija.php');
 		$result = mysql_query($query,$konekcija);
 		mysql_close($konekcija);

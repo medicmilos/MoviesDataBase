@@ -1,4 +1,4 @@
-<?php session_start();
+<?php session_start(); header("location:index.php?page=0&message= <div class='success'> Registration was successful, you can login now!</div>");
 	$username = $_REQUEST['username'];
 	$token = $_REQUEST['token'];
 	
@@ -13,6 +13,5 @@
 		$rezultat = mysql_query($upit, $konekcija); 
 		mysql_close($konekcija);
 		
-	}
-	header("location:index.php?page=16&confirmmessage=<div class='success'> Registration was successful, you can login now!</div>");
+	} 
 ?> 
