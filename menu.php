@@ -1,7 +1,7 @@
 					<div class="header-top-menu">
 						<ul id="top-menu" class="top-menu">
 							<?php
-									if(@$_REQUEST['page']=='5') {
+								if(@$_REQUEST['page']=='5') {
 										echo("<li><a href='index.php?page=5'> <b>&starf;</b ><span> Cpanel </span></a></li>");
 									}else if(@$_SESSION['user_mod']=='1'){
 										echo("<li><a href='index.php?page=5'>&nbsp;  <b>&starf;</b ><span> Cpanel </span></a></li>");
@@ -18,7 +18,7 @@
 										$link = $red['link'];
 										
 										echo ("<li><a href='$link'>$name</a></li>&nbsp;");
-									} 
-							?> 
-						</ul>
+									}
+							?>
+							</ul>
 					</div>

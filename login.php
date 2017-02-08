@@ -1,4 +1,4 @@
-<?php 
+<?php
 	if(isset($_REQUEST['btnLogin'])) { 
         $username = trim($_REQUEST['tbUsername']);
         $password = trim($_REQUEST['tbPassword']);
@@ -32,23 +32,15 @@
 					$_SESSION['username'] = $username;
 					$_SESSION['id_users'] = $id;
 					$_SESSION['user_mod'] = $db_role;
-					header("location:index.php?page=0&message= <div class='success'> Welcome back ".$_SESSION['username']."!</div>");
+					echo("<div class='success'> Welcome back ".$_SESSION['username']."!</div>");
 				} else { 
-					header("location:index.php?page=0&message= <div class='error'> Login failed!</div>");
+					header("Location: index.php?page=0&message= <div class='error'> Login failed!</div>");
 				}
 			}
-			
 		}else{
-			header("location:index.php?page=0&message= <div class='error'> Login failed!</div>");
+			header("Location: index.php?page=0&message= <div class='error'> Login failed!</div>");
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	$upit = "SELECT * FROM users WHERE username = '".@$_SESSION['username']."'";
 		include("konekcija.php");
 		$rezultat = mysql_query($upit, $konekcija);  
@@ -105,5 +97,5 @@
 						</ul>
 						</div>
 					</div>");
-		} 
-?> 				
+		}
+?>

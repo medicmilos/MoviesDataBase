@@ -99,7 +99,9 @@ if(isset($_SESSION['user_mod'])==1){
 				</div>
 				<?php
 					include("aside.php");
-				?>
+				?>					<?php
+						include("aside2.php");
+					?>
 			</div>
 		</div>
 		</div>

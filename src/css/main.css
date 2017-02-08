@@ -1006,11 +1006,11 @@ color:#fff;
 }
 #slika img{
 	width:250px;
-	height:290px;
+	height:270px;
 	border:3px solid #4F4F4F;
 }
 #slika{
-	height:290px;
+	height:270px;
 	width:250px;
 	float:left;
 	padding-top:10px;
@@ -1999,7 +1999,7 @@ color:#fff;
     border-color: #ebccd1;
 	padding:3px;
 	border-radius:5px;
-
+	max-width:1170px;
 }
 #uspesno{
 	color:#3c763d;
@@ -2119,6 +2119,20 @@ color:#fff;
 	color: #00529B;
 	background-color: #BDE5F8; 
 	text-align:center;
+}
+.infoo { 
+	padding:5px 0px 5px 0px !important;
+	background-repeat: no-repeat !important; 
+}
+.infoo {
+	color: #00529B !important;
+	background-color: #BDE5F8 !important; 
+	text-align:center !important;
+	max-width:1170px !important;
+	margin:0px auto;
+	font-size:15px;  
+	padding:3px;
+	border-radius:5px;
 }
 .success {
 	color: #4F8A10;
@@ -2276,4 +2290,9 @@ color:#fff;
 	width: 235px;
     cursor: pointer;
     margin-left: -89px;
+} 
+.div-fix{
+	    width: 770px;
+		margin:30px auto;
+		float:left;
 }

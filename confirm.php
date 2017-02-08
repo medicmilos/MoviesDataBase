@@ -1,4 +1,4 @@
-<?php session_start(); header("location:index.php?page=0&message= <div class='success'> Registration was successful, you can login now!</div>");
+<?php
 	$username = $_REQUEST['username'];
 	$token = $_REQUEST['token'];
 	
@@ -12,6 +12,6 @@
 		$upit = sprintf("UPDATE users SET active='1' WHERE username='%s'",$username);
 		$rezultat = mysql_query($upit, $konekcija); 
 		mysql_close($konekcija);
-		
-	} 
-?> 
+		header("Location: index.php?page=0&message=<div class='success'> Registration was successful, you can login now!</div>");	
+	}
+?>

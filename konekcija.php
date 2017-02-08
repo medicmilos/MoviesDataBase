@@ -5,4 +5,4 @@
 	if (!$konekcija) {
 		die('Database connection has timed out! '.mysql_error());
 	}
-?> 
+?>

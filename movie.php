@@ -57,7 +57,10 @@
 												</article>  
 											</main>");
 								}
-						// PAGINACIJA ///
+?>				
+			<div class="div-fix">
+		<?php
+								// PAGINACIJA ///
 								include('konekcija.php');
 								$upit3=sprintf("SELECT c.id_movies as movie, c.username as username,c.time as time,u.image as image,c.comment as comment FROM comments c JOIN users u ON c.username=u.username WHERE 
 							c.id_movies=%d",$_REQUEST['movie']);
@@ -78,7 +81,7 @@
 									$pn=1; //ako nema vrednosti znaci da je korisnik prvi put tu i dolazimo na prvo stranu
 								}
 								
-								$items_per_page=5; 
+								$items_per_page=2; 
 								
 								$last_page=ceil($nr/$items_per_page); 
 								if($pn<1)
@@ -212,11 +215,12 @@
 				}
 			?>
 			
-		</div> 					
-	</div>
+		</div> 	
+		</div></div>
 					<?php
 						include("aside.php");
 					?>
+
 				</div>
 			</div>
 		</div>

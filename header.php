@@ -8,11 +8,10 @@
 <?php
 	include("menu.php");
 ?>
-				</div>
+			</div>
 				<div class="cisti"></div>
 			</div>
-		<header class="masterheader container" role="banner">
-
+		<header class="masterheader container" role="banner"> 
 			<div class="cisti"></div>
 			<div class="header-container">
 				<div class="header-middle">

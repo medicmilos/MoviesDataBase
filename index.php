@@ -1,7 +1,7 @@
 <?php
-	session_start(); 
-	if(isset($_REQUEST['message'])) echo $_REQUEST['message']; 
-?> 
+	session_start();
+	if(isset($_REQUEST['message'])) echo $_REQUEST['message'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -21,8 +21,8 @@
 		<script src='src/js/main.js'></script>  
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
-	<body onLoad='ajaxprovera();'>
-		<?php
+	<body @onLoad='ajaxprovera();'>
+	<?php
 			include("header.php");
 
 				if(isset($_REQUEST['page'])){ 
@@ -48,8 +48,7 @@
 					case "13": include("manage_movie.php"); break;  
 					case "14": include("manage_polls.php"); break;  
 					case "15": include("manage_poll.php"); break;  
-					case "16": include("register.php"); break;  
-					case "17": include("confirm.php"); break;  
+					case "16": include("register.php"); break;   
 					case "18": include("gallery.php"); break;  
 					case "19": include("member.php"); break;  
 					default: include("content.php");break;
@@ -58,6 +57,6 @@
 
 			include("footer.php");
 		?>
-	 <script type="text/javascript" src="src/js/lightbox-plus-jquery.min.js"></script>
+	<script type="text/javascript" src="src/js/lightbox-plus-jquery.min.js"></script>
 	</body>
 </html>

@@ -1,4 +1,4 @@
-<?php  
+<?php 
 	if(isset($_REQUEST['btnRegister2'])) {
 		$email = trim($_REQUEST['tbEmail2']); 
 		$username = trim($_REQUEST['tbUsername2']); 
@@ -48,7 +48,7 @@
 				if(!$rezultat){ 
 					header("location:index.php?page=16&message=Error: " . mysql_error()); 
 				}else {  
-					$ver_code = "http://movies.milosmedic.com/index.php?page=17&username=".$username."&token=".$password."";  
+					$ver_code = "http://movies.milosmedic.com/confirm.php?username=".$username."&token=".$password."";  
 					$to = $email;
 					$subject = 'Verification link | Movies Database'; 
 					
@@ -61,14 +61,14 @@
 					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
 			 
-					if (mail($to, $subject, $message, $headers)) {    
-						echo("location:index.php?page=0&message=<div class='info'>Confirm your email adress!!</div>");
+					if (mail($to, $subject, $message, $headers)) {     
+						echo("<div class='infoo'>Confirm your email adress!!</div>");
 					}else {  
-						echo("location:index.php?page=16&message=<div id='erori'>Registration failed!</div>"); 
+						echo("<div id='erori'>Registration failed!</div>");
 					}
 				} 
 			}else {
-				echo("location:index.php?page=16&message=<div id='erori'>User with that email or username is registered, <br/>try with another email or username!</div>");
+				echo("<div id='erori'>User with that email or username is registered, <br/>try with another email or username!</div>");
 			}
 		}else{
 			 $greske[]="That email or username is in use";
@@ -104,7 +104,9 @@
 				</div>
 				<?php
 					include("aside.php");
-				?>
+				?>					<?php
+						include("aside2.php");
+					?>
 			</div>
 		</div>
 		</div>

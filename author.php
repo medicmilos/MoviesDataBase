@@ -10,7 +10,7 @@
 								</h4>
 							</div>
 							<div id="slika">
-								<img src="assets/images/members/milos.jpg" title="author" alt="Milos Medic"/>
+								<img src="assets/images/members/milos.png" title="author" alt="Milos Medic"/>
 							</div>
 							<div id="ukratko">
 								<p>
@@ -24,7 +24,9 @@
 				</div>
 				<?php
 					include("aside.php");
-				?>
+				?>					<?php
+						include("aside2.php");
+					?>
 			</div>
 		</div>
 		</div>

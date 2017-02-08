@@ -23,7 +23,9 @@
 				</div>
 				<?php
 					include("aside.php");
-				?>
+				?>					<?php
+						include("aside2.php");
+					?>
 			</div>
 		</div>
 		</div>
