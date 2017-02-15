@@ -28,7 +28,6 @@
 		} 
 	}
 	
-	
 	if(isset($_REQUEST['usernamem'])){ 
 		$upit = "SELECT * FROM users WHERE username = '".$_REQUEST['usernamem']."'";
 			include("konekcija.php");
@@ -96,12 +95,7 @@
 		
 
 	
-	
-	
-	
 ?>
-
- 
 		
 				<?php  
 					include("user.php"); 
